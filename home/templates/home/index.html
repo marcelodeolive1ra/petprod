@@ -1,13 +1,10 @@
+{% extends 'base.html' %}
 {% load staticfiles %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% block title %}App Saúde{% endblock title %}
+{% block home %}class="active"{% endblock %}
+{% block home_span %}<span class="sr-only">(current)</span>{% endblock %}
+{% block body %}
 
-<img src="{% static 'home/teste.jpg' %}">
+    <img src="{% static 'home/teste.jpg' %}">
 
-</body>
-</html>
+{% endblock body %}
