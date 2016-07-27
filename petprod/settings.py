@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #local
     'home',
     'medico',
+    'modulo',
 ]
 
 MIDDLEWARE_CLASSES = [
