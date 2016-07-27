@@ -1,10 +1,15 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
-{% block title %}Médicos{% endblock title %}
+
+{% block title%}Editar Médico{% endblock title%}
+{% block home %}{% endblock %}
+{% block home_span %}{% endblock %}
 {% block medico %}class="active"{% endblock %}
 {% block medico_span %}<span class="sr-only">(current)</span>{% endblock %}
+{% block modulo %}{% endblock %}
+{% block modulo_span %}{% endblock %}
+{% block emprestimo %}{% endblock %}
+{% block emprestimo_span %}{% endblock %}
 {% block body %}
-
     <center><h1>Editar Médico</h1></center><br>
 
 <form action="." method="POST">{% csrf_token %}

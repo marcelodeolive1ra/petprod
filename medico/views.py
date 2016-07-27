@@ -20,3 +20,19 @@ def medico_new(request):
     else:
         form = Medico_Form()
         return render(request, 'medico/medico_new.html', {'form': form, 'id':id})
+
+def medico_edit(request, id):
+    medico = get_object_or_404(Medico,pk=id)
+    form = Medico_Form(instance=medico)
+
+    if request.method == 'POST':
+        form = Medico_Form(request.POST, instance=medico)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/medico')
+
+    return render(request, 'medico/medico_edit.html', {'form':form, 'id':id})
+
+def medico_delete(request, id):
+    get_object_or_404(Medico, pk=id).delete()
+    return HttpResponseRedirect('/medico')

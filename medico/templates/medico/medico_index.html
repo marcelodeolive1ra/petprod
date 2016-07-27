@@ -37,8 +37,8 @@
                     <td>{{medico.expertise}}</td>
                     <td>{{medico.atendimento}}</td>
                     <td>{{medico.pontualidade}}</td>
-                    <td><a href=""><button type="button" class="btn btn-warning">Editar</button></a></td>
-                    <td><a href=""><button type="button" class="btn btn-danger">Deletar</button></a></td>
+                    <td><a href="{% url 'medico:medico_edit' medico.id %}"><button type="button" class="btn btn-warning">Editar</button></a></td>
+                    <td><a href="{% url 'medico:medico_delete' medico.id %}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
                 </tr>
             {% endfor %}
         </tbody>
