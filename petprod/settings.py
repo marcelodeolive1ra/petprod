@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home',
     'medico',
     'modulo',
+    'adm',
 ]
 
 MIDDLEWARE_CLASSES = [
