@@ -9,11 +9,11 @@ from modulo.forms import Modulo_Form
 from django.shortcuts import get_object_or_404
 
 def modulo_index(request):
-    modulos = Modulo.objects.order_by('codigo')
+    modulos = Modulo.objects.order_by('id')
     return render(request, 'modulo/modulo_index.html', {'modulos':modulos})
 
-def modulo_edit(request, codigo):
-    modulo = get_object_or_404(Modulo, pk=codigo)
+def modulo_edit(request, id):
+    modulo = get_object_or_404(Modulo, pk=id)
     form = Modulo_Form(instance=modulo)
 
     if request.method == 'POST':
@@ -22,29 +22,29 @@ def modulo_edit(request, codigo):
             form.save()
             return HttpResponseRedirect('/modulo')
 
-    return render(request, 'modulo/modulo_edit.html', {'form': form, 'codigo': codigo})
+    return render(request, 'modulo/modulo_edit.html', {'form': form, 'id': id})
 
-def modulo_delete(request, codigo):
-    get_object_or_404(Modulo, pk=codigo).delete()
+def modulo_delete(request, id):
+    get_object_or_404(Modulo, pk=id).delete()
     return HttpResponseRedirect('/modulo')
 
 def modulo_new(request):
     modulo = None
     try:
-        modulo = Modulo.objects.latest('codigo')
+        modulo = Modulo.objects.latest('id')
     except:
         pass
     if modulo == None:
-        codigo = 1
+        id = 1
     else:
-        codigo = modulo.codigo+1
+        id = modulo.id+1
     if request.method == 'POST':
         form = Modulo_Form(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect('/modulo')
         else:
-            return render(request, 'modulo/modulo_new.html', {'form': form, 'codigo': codigo})
+            return render(request, 'modulo/modulo_new.html', {'form': form, 'id': id})
     else:
         form = Modulo_Form()
-        return render(request, 'modulo/modulo_new.html', {'form': form, 'codigo': codigo})
+        return render(request, 'modulo/modulo_new.html', {'form': form, 'id': id})

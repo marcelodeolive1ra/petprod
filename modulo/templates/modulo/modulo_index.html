@@ -22,7 +22,8 @@
     <table class="table table-striped">
         <thead>
         <tr>
-            <th>Código</th>
+            <th>Id</th>
+            <th>Codigo</th> {# Remover na versão final #}
             <th>Nome</th>
             <th>Custo de Aquisição</th>
             <th>Custo Mensal</th>
@@ -37,6 +38,7 @@
         <tbody>
         {% for modulo in modulos %}
         <tr>
+            <td>{{modulo.id}}</td>
             <td>{{modulo.codigo}}</td>
             <td>{{modulo.nome}}</td>
             <td>{{modulo.custo_de_aquisicao | floatformat:2}}</td>
@@ -45,10 +47,11 @@
             <td>{{modulo.conforto}}</td>
             <td>{{modulo.capacidade}}</td>
             <td>{{modulo.preco_do_tratamento | floatformat:2}}</td>
-            <td><a href="{% url 'modulo:modulo_edit' modulo.codigo %}"><button type="button" class="btn btn-warning">Editar</button></a></td>
-            <td><a href="{% url 'modulo:modulo_delete' modulo.codigo %}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
+            <td><a href="{% url 'modulo:modulo_edit' modulo.id %}"><button type="button" class="btn btn-warning">Editar</button></a></td>
+            <td><a href="{% url 'modulo:modulo_delete' modulo.id %}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
         </tr>
-        {% endfor %}
+
+            {% endfor %}
         </tbody>
     </table>
 </div>

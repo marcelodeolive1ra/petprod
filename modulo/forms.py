@@ -7,6 +7,7 @@ class Modulo_Form(forms.ModelForm):
         model = Modulo
         fields = '__all__'
         widgets = {
+            'codigo': forms.TextInput(attrs={'class': 'col-xs-6'}),
             'nome': forms.TextInput(attrs={'class': 'col-xs-6'}),
             'custo_de_aquisicao': forms.TextInput(attrs={'class': 'col-xs-6'}),
             'custo_mensal': forms.TextInput(attrs={'class': 'col-xs-6'}),
@@ -19,6 +20,12 @@ class Modulo_Form(forms.ModelForm):
             'nome': {'max_length': "O campo Nome deve conter no máximo 200 caracteres.",
                      'required': "O campo Nome deve ser preenchido.",
                      },
+            'codigo': {
+                'min_value': 'O campo Código deve conter um número maior que zero.',
+                'invalid': 'O campo Custo de Aquisição deve conter um número inteiro ou decimal.',
+                'max_value': "O campo Custo de Aquisição não deve conter um número maior que 2147483647.0.",
+                'required': "O campo Custo Mensal deve ser preenchido.",
+            },
             'custo_de_aquisicao': {'invalid': "O campo Custo de Aquisição deve conter um número inteiro ou decimal.",
                                    'required': "O campo Custo de Aquisição deve ser preenchido.",
                                    'max_value': "O campo Custo de Aquisição não deve conter um número maior que 2147483647.0.",
