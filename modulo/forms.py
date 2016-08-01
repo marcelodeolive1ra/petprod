@@ -46,4 +46,5 @@ class Modulo_Form(forms.ModelForm):
                                     'max_value': "O campo Preço do Tratamento não deve conter um número maior que 2147483647.0.",
                                     'min_value': "O campo Preço do Tratamento deve conter um número maior que zero.",
                                     },
+
         }

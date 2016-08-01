@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'medico',
     'modulo',
     'adm',
+    'emprestimo',
 ]
 
 MIDDLEWARE_CLASSES = [
