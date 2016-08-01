@@ -29,6 +29,7 @@
                     <li {% block home %}{% endblock %}><a href="{% url 'home:index' %}">Home{% block home_span %}{% endblock %}</a></li>
                     <li {% block medico %}{% endblock %}><a href="{% url 'medico:medico_index' %}">Médicos{% block medico_span %}{% endblock %}</a></li>
                     <li {% block modulo %}{% endblock %}><a href="{% url 'modulo:modulo_index' %}">Módulos{% block modulo_span %}{% endblock %}</a></li>
+                    <li {% block emprestimo %}{% endblock %}><a href="{% url 'emprestimo:emprestimo_index' %}">Empréstimo{% block emprestimo_span %}{% endblock %}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

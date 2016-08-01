@@ -3,7 +3,6 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render
 from modulo.models import Modulo
-from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from modulo.forms import Modulo_Form
 from django.shortcuts import get_object_or_404
