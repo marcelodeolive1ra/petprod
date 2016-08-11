@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^modulo/', include('modulo.urls', namespace='modulo')),
     url(r'^adm/', include('adm.urls', namespace='adm')),
     url(r'^emprestimo/', include('emprestimo.urls', namespace='emprestimo')),
+    url(r'^classe_social/', include('classe_social.urls', namespace='classe_social')),
 ]

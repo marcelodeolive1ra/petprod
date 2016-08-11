@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'modulo',
     'adm',
     'emprestimo',
+    'classe_social',
 ]
 
 MIDDLEWARE_CLASSES = [
