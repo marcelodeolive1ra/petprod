@@ -1,17 +1,16 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-# from django.forms import ModelForm
-from django.core.exceptions import NON_FIELD_ERRORS
+from area.models import Area
 
 class Modulo(models.Model):
     class Meta:
-        unique_together = (('codigo', 'nome'),)
+        unique_together = (('codigo', 'area'),)
         #TODO adicionar mensagem de erro
 
     id = models.AutoField(u'id', primary_key=True, unique=True)
     classificacao = ((1, '1'), (2, '2'), (3, '3'))
     codigo = models.IntegerField(validators=[MinValueValidator(1)])
-    nome = models.CharField(max_length=200)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE)
     custo_de_aquisicao = models.FloatField(validators=[MinValueValidator(0.0)])
     custo_mensal = models.FloatField(validators=[MinValueValidator(0.0)])
     tecnologia = models.IntegerField(default=1, choices=classificacao)

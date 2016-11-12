@@ -8,7 +8,7 @@ class Modulo_Form(forms.ModelForm):
         fields = '__all__'
         widgets = {
             'codigo': forms.TextInput(attrs={'class': 'col-xs-6'}),
-            'nome': forms.TextInput(attrs={'class': 'col-xs-6'}),
+            'area': forms.Select(attrs={'class': 'col-xs-6'}),
             'custo_de_aquisicao': forms.TextInput(attrs={'class': 'col-xs-6'}),
             'custo_mensal': forms.TextInput(attrs={'class': 'col-xs-6'}),
             'tecnologia': forms.RadioSelect(attrs={'name': 'optradio', 'class': 'radio-inline'}),
@@ -17,8 +17,8 @@ class Modulo_Form(forms.ModelForm):
             'preco_do_tratamento': forms.TextInput(attrs={'class': 'col-xs-6'}),
         }
         error_messages = {
-            'nome': {'max_length': "O campo Nome deve conter no máximo 200 caracteres.",
-                     'required': "O campo Nome deve ser preenchido.",
+            'area': {'max_length': "O campo Área deve conter no máximo 200 caracteres.",
+                     'required': "O campo Área deve ser preenchido.",
                      },
             'codigo': {
                 'min_value': 'O campo Código deve conter um número maior que zero.',

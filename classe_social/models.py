@@ -11,3 +11,4 @@ class Classe_Social(models.Model):
     nivel_tecnologia = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
     media_conforto = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
     velocidade_atendimento = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
+

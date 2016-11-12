@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'home/base_configuracoes.html' %}
 
 {% block title%}Editar Módulo{% endblock title%}
 {% block home %}{% endblock %}
@@ -14,7 +14,7 @@
 
 <form action="." method="POST">{% csrf_token %}
 
-    <div style="width: 30%; position: absolute; top:20%; bottom: 0; left: 0; right: 0; margin: 0 auto;">
+    <div style="width: 40%; position: absolute; top:20%; bottom: 0; left: 0; right: 0; margin: 0 auto;">
         <table class="table table-striped" align="center">
             <thead>
             <tr>
@@ -32,8 +32,8 @@
                 <td align="left">{{form.codigo}}</td>
             </tr>
             <tr>
-                <td align="right">Nome:</td>
-                <td align="left">{{form.nome}}</td>
+                <td align="right">Área:</td>
+                <td align="left">{{form.area}}</td>
             </tr>
             <tr>
                 <td align="right">Custo de Aquisição:</td>
@@ -66,7 +66,7 @@
             </tbody>
         </table>
     </div>
-    {{form.nome.errors}}
+    {{form.area.errors}}
     {{form.custo_de_aquisicao.errors}}
     {{form.custo_mensal.errors}}
     {{form.capacidade.errors}}

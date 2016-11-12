@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'home/base_configuracoes.html' %}
 
 {% block title%}Módulos{% endblock title%}
 {% block home %}{% endblock %}
@@ -18,13 +18,12 @@
     </div>
     <br>
 
-
     <table class="table table-striped">
         <thead>
         <tr>
             <th>Id</th>
             <th>Codigo</th> {# Remover na versão final #}
-            <th>Nome</th>
+            <th>Área</th>
             <th>Custo de Aquisição</th>
             <th>Custo Mensal</th>
             <th>Tecnologia</th>
@@ -40,7 +39,7 @@
         <tr>
             <td>{{modulo.id}}</td>
             <td>{{modulo.codigo}}</td>
-            <td>{{modulo.nome}}</td>
+            <td>{{modulo.area}}</td>
             <td>{{modulo.custo_de_aquisicao | floatformat:2}}</td>
             <td>{{modulo.custo_mensal | floatformat:2}}</td>
             <td>{{modulo.tecnologia}}</td>

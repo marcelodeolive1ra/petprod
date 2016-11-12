@@ -1,0 +1,140 @@
+{% extends 'home/base_configuracoes.html' %}
+
+
+{% block cenario %}class="active"{% endblock %}
+{% block cenario_span %}<span class="sr-only">(current)</span>{% endblock %}
+{% block body %}
+    <div class="container">
+        <center><h1>Cenários</h1></center>
+
+    <div align="right" style="margin-right: 7%">
+        <a href="{% url 'cenario:cenario_new' %}"><button type="submit" class="btn btn-primary">Cadastrar Novo</button></a>
+    </div>
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nome</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <th data-toggle="collapse" data-target="#collapseinativo1"><a>1</a></th>
+            <th data-toggle="collapse" data-target="#collapseinativo1"><a>Rio De Janeiro</a></th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div id="collapseinativo1" class="collapse jumbotron">
+                    <table class="table table-striped">
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr><th>Modulos</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><td>M1</td></tr>
+                                                    <tr><td>M2</td></tr>
+                                                    <tr><td>M3</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr><th>Medico</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><td>M1</td></tr>
+                                                    <tr><td>M2</td></tr>
+                                                    <tr><td>M3</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </th>
+                                <th>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr><th>Emprestimos</th></tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr><td>E1</td></tr>
+                                                    <tr><td>E2</td></tr>
+                                                    <tr><td>E3</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    Taxa Padrao
+                                </td>
+                            </tr>
+                            <tr >
+                                <td colspan="3">
+                                    <div> <h3>Turnos e Eventos</h3></div>
+                                    <div class="col-md-12"><label style="width:auto;" class="col-md-3">Quantidade de Turnos:</label><input type="text"  class="form-control, col-md-1" value="5"> </div>
+
+                                    <div style="border: 2px solid black;  margin: 1em; display: inline-block; width: 100px; height: 100px; text-align: center; ">
+                                        <div>Evento Inicial</div>
+                                    </div>
+                                    <div style="border: 2px solid black;  margin: 1em; display: inline-block; width: 100px; height: 100px; text-align: center; ">
+                                        <div>.</div>
+                                    </div>
+
+                                    <div style="border: 2px solid black;  margin: 1em; display: inline-block; width: 100px; height: 100px; text-align: center; ">
+                                        <div>Tufão</div>
+                                    </div>
+                                    <div style="border: 2px solid black;  margin: 1em; display: inline-block; width: 100px; height: 100px; text-align: center; ">
+                                        <div>Tufão</div>
+                                    </div>
+                                    <div style="border: 2px solid black;  margin: 1em; display: inline-block; width: 100px; height: 100px; text-align: center; ">
+                                        <div>.</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+        </tr>
+
+
+
+
+
+        <tr>
+            <td>2</td>
+            <td data-toggle="collapse" data-target="#collapseinativo2" >Rio De Janeiro</td>
+        </tr>
+        <tr><td colspan="2"><div id="collapseinativo2" class="collapse">oi2</div></td></tr>
+        {% for cenario in cenarios %}
+        <tr>
+            <td>{{cenario.id}}</td>
+            <td>{{cenario.nome}}</td>
+            <td><a href="{% url 'cenario:cenario_edit' cenario.id %}"><button type="button" class="btn btn-warning">Editar</button></a></td>
+            <td><a href="{% url 'cenario:cenario_delete' cenario.id %}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
+        </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+{% endblock body %}
