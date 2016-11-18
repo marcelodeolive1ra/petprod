@@ -1,21 +1,14 @@
 {% extends 'home/base_configuracoes.html' %}
-
+{% load staticfiles %}
 {% block title%}Área{% endblock title%}
-{% block home %}{% endblock %}
-{% block home_span %}{% endblock %}
-{% block medico %}{% endblock %}
-{% block medico_span %}{% endblock %}
-{% block modulo %}{% endblock %}
-{% block modulo_span %}{% endblock %}
-{% block emprestimo %}{% endblock %}
-{% block emprestimo_span %}{% endblock %}
 {% block area %}class="active"{% endblock %}
 {% block area_span %}<span class="sr-only">(current)</span>{% endblock %}
 {% block body %}
+
+    <!-- TABELA LISTA areas -->
 <div class="container">
     <center><h1>Áreas</h1></center>
 
-    <div style="width: 30%; position: absolute; top:16%; bottom: 0; left: 0; right: 0; margin: 0 auto;">
         <div align="right" style="margin-right: 11%">
             <a href="{% url 'area:area_new' %}"><button type="submit" class="btn btn-primary">Cadastrar Novo</button></a>
         </div>
@@ -27,16 +20,25 @@
             <tr>
                 <th>Id</th>
                 <th>Nome</th> {# Remover na versão final #}
+                <th>Entrada A</th>
+                <th>Entrada B</th>
+                <th>Entrada C</th>
+                <th>Entrada D</th>
+                <th>Entrada E</th>
                 <th>Editar</th>
                 <th>Deletar</th>
             </tr>
             </thead>
             <tbody>
-
-            {% for area in areas %}
+            {% for area in areas%}
             <tr>
                 <td>{{area.id}}</td>
                 <td>{{area.nome}}</td>
+                 {% for classe in area_classe%}
+                     {% if classe.area_id == area.id%}
+                          <td>{{classe.entrada}} ± {{classe.desvios}}</td>
+                     {% endif %}
+                 {% endfor %}
                 <td><a href="{% url 'area:area_edit' area.id %}"><button type="button" class="btn btn-warning">Editar</button></a></td>
                 <td><a href="{% url 'area:area_delete' area.id %}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
             </tr>
@@ -45,5 +47,5 @@
             </tbody>
         </table>
     </div>
-</div>
+
 {% endblock body %}

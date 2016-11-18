@@ -19,4 +19,4 @@ class Area_Form(forms.ModelForm):
 class Area_ClasseSocial_Form(forms.ModelForm):
     class Meta:
         model = Area_ClasseSocial
-        fields = ['entrada']
+        fields = ['entrada','desvios']
