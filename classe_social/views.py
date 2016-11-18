@@ -38,6 +38,7 @@ def classe_social_new(request):
     else:
         id = classe.id+1
     if request.method == 'POST':
+        print(request.POST)
         form = Classe_Social_Form(request.POST)
         if form.is_valid():
             form.save()

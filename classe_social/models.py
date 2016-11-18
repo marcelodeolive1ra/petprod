@@ -12,3 +12,4 @@ class Classe_Social(models.Model):
     media_conforto = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
     velocidade_atendimento = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
 
+

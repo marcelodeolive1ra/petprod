@@ -27,8 +27,8 @@ def emprestimo_delete(request, id):
 def emprestimo_new(request):
     if request.method == 'POST':
         form = Emprestimo_Form(request.POST)
+
         if form.is_valid():
-            form.save()
             return HttpResponseRedirect('/emprestimo')
         else:
             return render(request, 'emprestimo/emprestimo_new.html', {'form': form})
