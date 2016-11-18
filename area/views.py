@@ -46,20 +46,17 @@ def area_new(request):
             list_entradas = request.POST.getlist('entrada')
             request.POST = request.POST.copy()
             for entrada in list_entradas:
-                print(entrada)
                 request.POST['entrada'] = entrada
                 form_area_classesocial = Area_ClasseSocial_Form(request.POST)
                 if not form_area_classesocial.is_valid():
+                    #retorna o erro
                     return render(request, 'area/area_new.html', {'form': form, 'id': id})
 
             area = form.save()
             list_entradas = iter(list_entradas)
             for classe in Classe_Social.objects.order_by('id'):
                 area_classesocial = Area_ClasseSocial(area=area,classe_social=classe,entrada=next(list_entradas))
-                print(area_classesocial.area)
-                print(area_classesocial.classe_social)
-                print(area_classesocial.entrada)
-            #form_area_classesocial.save()
+                area_classesocial.save()
 
             return HttpResponseRedirect('/area')
         else:
@@ -67,4 +64,5 @@ def area_new(request):
     else:
         form = Area_Form()
         form_area_classesocial = Area_ClasseSocial_Form()
-        return render(request, 'area/area_new.html', {'form': form, 'id': id, 'form_area_classesocial': form_area_classesocial})
+        classes_sociais = Classe_Social.objects.order_by('id')
+        return render(request, 'area/area_new.html', {'form': form, 'id': id, 'form_area_classesocial': form_area_classesocial, 'classes_sociais':classes_sociais})
