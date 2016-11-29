@@ -7,8 +7,7 @@ class Area_Form(forms.ModelForm):
         model = Area
         fields = '__all__'
         widgets = {
-            'nome': forms.TextInput(attrs={'class': 'col-xs-6'}),
-
+            'nome': forms.TextInput(attrs={'class': 'col-xs-6'})
         }
         error_messages = {
             'nome': {'max_length': "O campo Nome deve conter no máximo 200 caracteres.",
@@ -20,3 +19,8 @@ class Area_ClasseSocial_Form(forms.ModelForm):
     class Meta:
         model = Area_ClasseSocial
         fields = ['entrada','desvios']
+
+        widgets = {
+            'entrada' : forms.TextInput(attrs={'class': 'col-xs-12'}),
+            'desvios': forms.TextInput(attrs={'class': 'col-xs-12'})
+        }
