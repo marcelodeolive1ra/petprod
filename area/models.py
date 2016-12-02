@@ -15,7 +15,7 @@ class Area(models.Model):
 class Area_ClasseSocial(models.Model):
     area = models.ForeignKey(Area, on_delete=models.CASCADE)
     classe_social = models.ForeignKey(Classe_Social, on_delete=models.CASCADE)
-    entrada = models.IntegerField(default=1, validators=[MinValueValidator(1)])
-    desvios = models.IntegerField(default=0, validators=[MinValueValidator(0)])
+    entrada = models.IntegerField(validators=[MinValueValidator(1)])
+    desvios = models.IntegerField(validators=[MinValueValidator(0)])
 
 
