@@ -120,7 +120,7 @@ def area_new(request):
 
             return HttpResponseRedirect('/area')
         else:
-
+            form_area_classesocial = Area_ClasseSocial_Form(request.POST)
             return render(request, 'area/area_new.html', {'form': form, 'id': id, 'form_area_classesocial': form_area_classesocial,'classes_sociais':classes_sociais})
     else:
         form = Area_Form()
