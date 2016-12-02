@@ -21,20 +21,28 @@
         <table class="table table-striped" align="center">
             <thead>
             <tr>
+
                 <td align="right"><b>Atributos</b></td>
+                 <td></td>
                 <td align="left"><b>Valores</b></td>
             </tr>
             </thead>
             <tbody>
              <tr>
+
                 <td align="right">Id:</td>
-                <td align="left">{{id}}</td>
-                  <td></td>
+
+                <td>{{id}}</td>
+                 <td></td>
+
+
             </tr>
             <tr>
                 <td align="right">Nome:</td>
+
                 <td align="left">{{form.nome}}</td>
-                 <td></td>
+                <td></td>
+
             </tr>
             <tr>
 
@@ -43,22 +51,26 @@
                 <td align="left" >Desvios</td>
             </tr>
 
-            {% for classe_social in classes_sociais %}
+             {% for b in form_ac%}
             <tr>
-                <td align="right">Classe {{classe_social.nome}}</td>
-                <td align="right">{{form_area_classesocial.entrada}} </td>
-                <td align="left">{{form_area_classesocial.desvios}}</td>
+                <td align="right">Classe </td>
+                <td align="right">{{b.entrada}}</td>
+                <td align="left">{{b.desvios}}</td>
             </tr>
             {% endfor%}
+
             <tr>
+                <td></td>
                 <td align="right"><a  style="text-decoration:none;" href="{% url 'area:area_index' %}"><button type="button" class="btn btn-warning btn-block" >Voltar</button></a></td>
-                 <td></td>
+
                 <td align="left"><button type="submit" class="btn btn-success btn-block" >Salvar</button></td>
             </tr>
             </tbody>
         </table>
     </div>
-    {{form.nome.errors}}
+    {{form_ac.errors}}
+    {{ form_area_classesocial.errors }}
+    {{ form.errors }}
 </form>
 
 {% endblock body %}

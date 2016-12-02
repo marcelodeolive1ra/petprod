@@ -15,37 +15,68 @@
         <br>
 
 
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nome</th> {# Remover na versão final #}
-                <th>Entrada A</th>
-                <th>Entrada B</th>
-                <th>Entrada C</th>
-                <th>Entrada D</th>
-                <th>Entrada E</th>
-                <th>Editar</th>
-                <th>Deletar</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for area in areas%}
-            <tr>
-                <td>{{area.id}}</td>
-                <td>{{area.nome}}</td>
-                 {% for classe in area_classe%}
-                     {% if classe.area_id == area.id%}
-                          <td>{{classe.entrada}} ± {{classe.desvios}}</td>
-                     {% endif %}
-                 {% endfor %}
-                <td><a href="{% url 'area:area_edit' area.id %}"><button type="button" class="btn btn-warning">Editar</button></a></td>
-                <td><a href="{% url 'area:area_delete' area.id %}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
-            </tr>
 
+    <table class="table table-striped">
+    {% with 0 as a %}
+
+
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                </tr>
+                {% for area in areas%}
+
+            </thead>
+                    <tr>
+                        <th data-toggle="collapse" data-target="#collapseinativo{{forloop.counter }}">{{area.id}}</th>
+                        <th data-toggle="collapse" data-target="#collapseinativo{{forloop.counter }}">{{area.nome}}</th>
+                    </tr>
+
+                    <td colspan="2">
+                        <div id="collapseinativo{{forloop.counter}}" class="collapse jumbotron">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <th>Classe Social</th>
+                                                            <th>Entrada ± Desvio </th>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            {% for classe in area_classe%}
+                                                                {% if classe.area_id == area.id%}
+                                                                    <td>{{classe.classe_social.nome }}</td>
+                                                                    <td>{{classe.entrada}} ± {{classe.desvios}}</td>
+                                                                {% endif %}
+                                                                <tr></tr>
+                                                            {% endfor %}
+                                                            <td align="right"><a href="{% url 'area:area_edit' area.id %}"><button type="button" class="btn btn-warning">Editar</button></a></td>
+                                                            <td><a href="{% url 'area:area_delete' area.id %}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
                 {% endfor %}
-            </tbody>
-        </table>
-    </div>
+
+
+
+    {% endwith %}
+
+
+    </table>
+
+</div>
 
 {% endblock body %}
