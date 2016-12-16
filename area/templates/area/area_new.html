@@ -39,18 +39,18 @@
                 <td></td>
 
             </tr>
-            <tr>
+           <tr>
 
                 <td></td>
                 <td align="left">Entradas Iniciais</td>
                 <td align="left" >Desvios</td>
             </tr>
 
-            {% for classe_social in classes_sociais %}
+             {% for b in form_ac%}
             <tr>
-                <td align="right">Classe {{classe_social.nome}}</td>
-                <td align="right">{{form_area_classesocial.entrada}} </td>
-                <td align="left">{{form_area_classesocial.desvios}}</td>
+                <td align="right">Classe </td>
+                <td align="right">{{b.entrada}}</td>
+                <td align="left">{{b.desvios}}</td>
             </tr>
             {% endfor%}
 
