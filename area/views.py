@@ -146,6 +146,6 @@ def area_new(request):
         for a in classes_sociais:
             form_area_classesocial = Area_ClasseSocial_Form()
             form_ac.append(form_area_classesocial)
-        return render(request, 'area/area_edit.html',
+        return render(request, 'area/area_new.html',
                       {'form': form, 'id': id, 'form_ac': form_ac, 'classes_sociais': classes_sociais})
 
