@@ -51,11 +51,12 @@
                 <td align="left" >Desvios</td>
             </tr>
 
-             {% for b in form_ac%}
+           {% for classe, nome in list%}
             <tr>
-                <td align="right">Classe </td>
-                <td align="right">{{b.entrada}}</td>
-                <td align="left">{{b.desvios}}</td>
+                <td align="right">Classe {{nome}} </td>
+                <td align="right">{{classe.entrada}}</td>
+                <td align="left">{{classe.desvios}}</td>
+
             </tr>
             {% endfor%}
 
