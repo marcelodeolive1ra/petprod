@@ -4,7 +4,13 @@
 {% block home %}class="active"{% endblock %}
 {% block home_span %}<span class="sr-only">(current)</span>{% endblock %}
 {% block body %}
-    <br><br>
-    <img src="{% static 'home/teste.jpg' %}">
+    <div class="container">
+        <div class="row">
+            <div class="center-block">
+                <img class="img-responsive" src="{% static 'home/pet_producao_logo.png' %}">
+            </div>
+        </div>
+    </div>
+
 
 {% endblock body %}
