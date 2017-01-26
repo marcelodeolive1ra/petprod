@@ -19,3 +19,5 @@ class Area_ClasseSocial(models.Model):
     desvios = models.IntegerField(validators=[MinValueValidator(0)])
 
 
+
+

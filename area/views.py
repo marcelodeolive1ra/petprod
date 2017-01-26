@@ -18,29 +18,42 @@ def area_edit(request, id):
 
     if request.method == 'POST':
         form = Area_Form(request.POST, instance=area)
-        form_area_classesocial = Area_ClasseSocial_Form(request.POST)
         classes_sociais = Classe_Social.objects.order_by('id')
-
+        list_entradas = request.POST.getlist('entrada')
+        list_desvios = request.POST.getlist('desvios')
+        request.POST = request.POST.copy()
+        form_ac = []
+        nomes = []
+        for a in classes_sociais:
+            nomes.append(a.nome)
+        list = zip(form_ac, nomes)
+        for i in range(0, len(list_entradas)):
+            form_area_classesocial = Area_ClasseSocial_Form(
+                initial={'entrada': list_entradas[i], 'desvios': list_desvios[i]})
+            form_ac.append(form_area_classesocial)
         if form.is_valid():
-            list_entradas = request.POST.getlist('entrada')
-            list_desvios = request.POST.getlist('desvios')
-            request.POST = request.POST.copy()
+
             for entrada in list_entradas:
                 request.POST['entrada'] = entrada
                 form_area_classesocial = Area_ClasseSocial_Form(request.POST)
+
                 if not form_area_classesocial.is_valid():
-                    # retorna o erro, nao consigui fazer o tratamento correto do erro :( sorry. Ele some os campos, mas funciona...
+                    #form_ac[iterador-1] = Area_ClasseSocial_Form(initial={'desvios': list_desvios[iterador-1]})
+                    # retorna o erro em form_area_classesocial e valores em form_ac
                     return render(request, 'area/area_edit.html',
-                                  {'form': form, 'id': id, 'form_area_classesocial': form_area_classesocial,
-                                   'classes_sociais': classes_sociais})
+                                  {'form': form, 'id': id, 'classes_sociais': classes_sociais, 'form_area_classesocial': form_area_classesocial,'list':list})
+
+
             for desvio in list_desvios:
                 request.POST['desvios'] = desvio
                 form_area_classesocial = Area_ClasseSocial_Form(request.POST)
+
                 if not form_area_classesocial.is_valid():
                     # retorna o erro
+                    #form_ac[iterador - 1] = Area_ClasseSocial_Form(initial={'entrada': list_entradas[iterador - 1]})
                     return render(request, 'area/area_edit.html',
-                                  {'form': form, 'id': id,'form_area_classesocial': form_area_classesocial,
-                                   'classes_sociais': classes_sociais})
+                                  {'form': form, 'id': id, 'classes_sociais': classes_sociais,
+                                   'form_area_classesocial': form_area_classesocial,'list':list})
 
             get_object_or_404(Area, pk=id).delete()
             area = form.save()
@@ -53,19 +66,24 @@ def area_edit(request, id):
             return HttpResponseRedirect('/area')
         else:
             return render(request, 'area/area_edit.html',
-                          {'form': form, 'id': id,
-                           'classes_sociais': classes_sociais})
+                          {'form': form, 'id': id, 'classes_sociais': classes_sociais,
+                           'form_area_classesocial': form_area_classesocial,'list':list})
 
     form = Area_Form(instance=area)
     area_classe = Area_ClasseSocial.objects.order_by('id')
     form_ac = []
+    nomes = []
     for a in area_classe:
         if a.area_id == int(id):
-            ##print("passou aeouuuu uhuuu")
             form_area_classesocial =  Area_ClasseSocial_Form(instance=a)
             form_ac.append(form_area_classesocial)
+
+
     classes_sociais = Classe_Social.objects.order_by('id')
-    return render(request, 'area/area_edit.html', {'form': form, 'id': id, 'form_ac': form_ac, 'classes_sociais':classes_sociais})
+    for a in classes_sociais:
+        nomes.append(a.nome)
+    list = zip(form_ac, nomes)
+    return render(request, 'area/area_edit.html', {'form': form, 'id': id, 'classes_sociais':classes_sociais,'list':list})
 
 
 def area_delete(request, id):
@@ -89,27 +107,38 @@ def area_new(request):
         form = Area_Form(request.POST)
 
         classes_sociais = Classe_Social.objects.order_by('id')
-        if form.is_valid():
 
-            list_entradas = request.POST.getlist('entrada')
-            list_desvios =  request.POST.getlist('desvios')
-            request.POST = request.POST.copy()
+
+        list_entradas = request.POST.getlist('entrada')
+        list_desvios =  request.POST.getlist('desvios')
+        request.POST = request.POST.copy()
+        form_ac = []
+        nomes = []
+        for i in range(0, len(list_entradas)):
+            form_area_classesocial = Area_ClasseSocial_Form(
+                    initial={'entrada': list_entradas[i], 'desvios': list_desvios[i]})
+            form_ac.append(form_area_classesocial)
+        classes_sociais = Classe_Social.objects.order_by('id')
+        for a in classes_sociais:
+            nomes.append(a.nome)
+        list = zip(form_ac, nomes)
+        if form.is_valid():
             for entrada in list_entradas:
                 request.POST['entrada'] = entrada
                 form_area_classesocial = Area_ClasseSocial_Form(request.POST)
                 if not form_area_classesocial.is_valid():
                         #retorna o erro
-                        return render(request, 'area/area_new.html',
-                                      {'form': form, 'id': id, 'form_area_classesocial': form_area_classesocial,
-                                       'classes_sociais': classes_sociais})
+                        return render(request, 'area/area_edit.html',
+                                      {'form': form, 'id': id, 'classes_sociais': classes_sociais,
+                                       'form_area_classesocial': form_area_classesocial,'list':list})
             for desvio in list_desvios:
                 request.POST['desvios'] = desvio
                 form_area_classesocial = Area_ClasseSocial_Form(request.POST)
                 if not form_area_classesocial.is_valid():
                     # retorna o erro
-                    return render(request, 'area/area_new.html',
-                                  {'form': form, 'id': id, 'form_area_classesocial': form_area_classesocial,
-                                   'classes_sociais': classes_sociais})
+                    return render(request, 'area/area_edit.html',
+                                  {'form': form, 'id': id, 'classes_sociais': classes_sociais,
+                                   'form_area_classesocial': form_area_classesocial,'list':list})
 
             area = form.save()
             list_entradas = iter(list_entradas)
@@ -120,10 +149,20 @@ def area_new(request):
 
             return HttpResponseRedirect('/area')
         else:
-            form_area_classesocial = Area_ClasseSocial_Form(request.POST)
-            return render(request, 'area/area_new.html', {'form': form, 'id': id, 'form_area_classesocial': form_area_classesocial,'classes_sociais':classes_sociais})
+            #form_area_classesocial = Area_ClasseSocial_Form(request.POST)
+            return render(request, 'area/area_edit.html',
+                          {'form': form, 'id': id, 'classes_sociais': classes_sociais,
+                           'form_area_classesocial': form_area_classesocial,'list':list})
     else:
         form = Area_Form()
-        form_area_classesocial = Area_ClasseSocial_Form()
         classes_sociais = Classe_Social.objects.order_by('id')
-        return render(request, 'area/area_new.html', {'form': form, 'id': id, 'form_area_classesocial': form_area_classesocial, 'classes_sociais':classes_sociais})
+        form_ac = []
+        nomes = []
+        for a in classes_sociais:
+            form_area_classesocial = Area_ClasseSocial_Form()
+            form_ac.append(form_area_classesocial)
+            nomes.append(a.nome)
+        list = zip(form_ac, nomes)
+        return render(request, 'area/area_new.html',
+                      {'form': form, 'id': id, 'classes_sociais': classes_sociais, 'list':list})
+

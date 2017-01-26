@@ -39,18 +39,20 @@
                 <td></td>
 
             </tr>
-            <tr>
+           <tr>
 
                 <td></td>
                 <td align="left">Entradas Iniciais</td>
                 <td align="left" >Desvios</td>
             </tr>
 
-            {% for classe_social in classes_sociais %}
+
+             {% for classe, nome in list%}
             <tr>
-                <td align="right">Classe {{classe_social.nome}}</td>
-                <td align="right">{{form_area_classesocial.entrada}} </td>
-                <td align="left">{{form_area_classesocial.desvios}}</td>
+                <td align="right">Classe {{ nome}} </td>
+                <td align="right">{{classe.entrada}}</td>
+                <td align="left">{{classe.desvios}}</td>
+
             </tr>
             {% endfor%}
 
@@ -65,8 +67,6 @@
         </table>
     </div>
     {{form.nome.errors}}
-
-
     {{ form_area_classesocial.errors }}
     {{ form.errors }} {# Melhorar a exibição de erros para o caso de Código e Area já existirem #}
 </form>
