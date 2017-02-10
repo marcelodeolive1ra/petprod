@@ -4,19 +4,25 @@
 {% block home %}class="active"{% endblock %}
 {% block home_span %}<span class="sr-only">(current)</span>{% endblock %}
 {% block body %}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <br><br><br>#}
+{#        </div>#}
+{#        <div class="row">#}
+{#            <div class="jumbotron">#}
+{#                <h1>Saúde em Jogo</h1>#}
+{#                <h2>PET-Produção UFSCar</h2>#}
+{#                <hr/>#}
+
     <div class="container">
-        <div class="row">
-            <br><br><br>
-        </div>
-        <div class="row">
-            <div class="jumbotron">
-                <h1>Saúde em Jogo</h1>
-                <h2>PET-Produção UFSCar</h2>
-                <hr/>
-                <form method="post" action="." class="form-horizontal">
+    <div class="jumbotron">
+        <h1>Saúde em Jogo</h1>
+        <h2>PET-Produção UFSCar</h2>
+
+        <form method="post" action="." class="form-horizontal">
                     {% csrf_token %}
                     <div class="form-group">
-                        <label for="inputUsuario" class="col-sm-1 control-label">Usuário</label>
+                        <label for="inputUsuario" class="control-label">Usuário</label>
                         <div class="col-sm-3">
                             <input type="text" class="form-control" placeholder="Usuário" name="usuario"
                                    id="inputUsuario">
@@ -29,6 +35,7 @@
                                    id="inputSenha">
                         </div>
                     </div>
+
                     <div class="form-group">
                         <div class="col-sm-offset-1 col-sm-3">
                             <input type="submit" value="Fazer login" class="btn btn-primary">
@@ -44,8 +51,12 @@
                 </form>
                 <hr />
                 <p align="right">Versão de desenvolvimento 0.1.0</p>
-            </div>
-        </div>
     </div>
+</div>
+
+
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
 {% endblock body %}
