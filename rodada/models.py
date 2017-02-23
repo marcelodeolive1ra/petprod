@@ -1,4 +1,6 @@
 from django.db import models
+from django.core.validators import MinValueValidator
+from evento.models import Evento
 
 class Rodada (models.Model):
     class Meta:
@@ -7,4 +9,4 @@ class Rodada (models.Model):
 
     numeroRodada = models.IntegerField(validators=[MinValueValidator(1)])
     duracao = models.IntegerField(validators=[MinValueValidator(1)])
-    evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE, default=1)

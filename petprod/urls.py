@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^area/', include('area.urls', namespace='area')),
     url(r'^evento/', include('evento.urls', namespace='evento')),
     url(r'^cenario/', include('cenario.urls', namespace='cenario')),
+    url(r'^rodada/', include('rodada.urls', namespace='rodada')),
 ]
