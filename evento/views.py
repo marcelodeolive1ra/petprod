@@ -11,14 +11,15 @@ from django.shortcuts import get_list_or_404
 
 def evento_index(request):
     eventos = Evento.objects.order_by('id')
-    modificaEvento = Evento_ModificaEntrada.objects.order_by('evento')
+    #eventos.delete(0);
+    modificaEvento = Evento_ModificaEntrada.objects.order_by('id')
     #evento_modifica = Evento_ModificaEntrada.object.order_by('id')
     return render(request, 'evento/evento_index.html', {'eventos':eventos, 'modificacoes': modificaEvento})
 
-def area_index(request):
-    areas = Area.objects.order_by('id')
-    area_classe = Area_ClasseSocial.objects.order_by('id')
-    return render(request, 'area/area_index.html', {'area_classe':area_classe,'areas':areas})
+#def area_index(request):
+#    areas = Area.objects.order_by('id')
+#    area_classe = Area_ClasseSocial.objects.order_by('id')
+#    return render(request, 'area/area_index.html', {'area_classe':area_classe,'areas':areas})
 
 def evento_edit(request, id):
     print("oi")
@@ -85,6 +86,8 @@ def evento_delete(request, id):
     #return HttpResponseRedirect('/modulo')
     pass
 '''
+    get_object_or_404(Evento, pk=id).delete()
+    return HttpResponseRedirect('/evento')
 
 def evento_new(request):
     evento = None

@@ -5,11 +5,7 @@ from area.models import Area_ClasseSocial
 
 
 class Evento(models.Model):
-    id = models.AutoField(u'id', primary_key=True, unique=True)
     nome = models.CharField(max_length=200)
-
-
-
 
 class Evento_ModificaEntrada(models.Model):
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE)

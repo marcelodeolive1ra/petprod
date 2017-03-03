@@ -41,8 +41,8 @@
 
                                                         <tbody>
                                                             {% for mod in modificacoes%}
-                                                                {% if mod.evento == evento.id%}
-                                                                    <td>{{mod.area_classe_social.nome }}</td>
+                                                                {% if mod.evento.id == evento.id%}
+                                                                    <td>{{mod.area_classe_social.area}} {{mod.area_classe_social.classe_social}}</td>
                                                                     <td>{{mod.modificadorEntrada}} ± {{mod.modificadorDesvio}}</td>
                                                                 {% endif %}
                                                                 <tr></tr>
