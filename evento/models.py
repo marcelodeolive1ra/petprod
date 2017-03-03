@@ -1,17 +1,29 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+from area.models import Area
+
 
 class Evento(models.Model):
-
-    id = models.AutoField(u'id', primary_key=True, unique=True)
+    #class Meta:
+     #   abstract = True
     nome = models.CharField(max_length=200)
+    area = models.ForeignKey(Area, on_delete=models.CASCADE)
+    #entrada da classe social
+    entradaA = models.FloatField(validators=[MinValueValidator(0)])
+    entradaB = models.FloatField(validators=[MinValueValidator(0)])
+    entradaC = models.FloatField(validators=[MinValueValidator(0)])
+    entradaD = models.FloatField(validators=[MinValueValidator(0)])
+    entradaE = models.FloatField(validators=[MinValueValidator(0)])
 
-    entrada = models.FloatField(validators=[MinValueValidator(0.0)])
-    desvio_padrao = models.FloatField(validators=[MinValueValidator(0.0)])
+    desvioA = models.FloatField(validators=[MinValueValidator(0)])
+    desvioB = models.FloatField(validators=[MinValueValidator(0)])
+    desvioC = models.FloatField(validators=[MinValueValidator(0)])
+    desvioD = models.FloatField(validators=[MinValueValidator(0)])
+    desvioE = models.FloatField(validators=[MinValueValidator(0)])
+'''
+class Evento_Customizavel(Evento):
+    customizavel = models.BooleanField(default=True)
 
-    preco_atendimento = models.FloatField(validators=[MinValueValidator(0.0)])
-    nivel_especialidade = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
-    nivel_tecnologia = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
-    media_conforto = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
-    velocidade_atendimento = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(3.0)])
-
+class Evento_Default(Evento):
+    default = models.BooleanField(default=True)
+'''
