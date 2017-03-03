@@ -1,29 +1,19 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-from area.models import Area
+from classe_social.models import Classe_Social
+from area.models import Area_ClasseSocial
 
 
 class Evento(models.Model):
-    #class Meta:
-     #   abstract = True
+    id = models.AutoField(u'id', primary_key=True, unique=True)
     nome = models.CharField(max_length=200)
-    area = models.ForeignKey(Area, on_delete=models.CASCADE)
-    #entrada da classe social
-    entradaA = models.FloatField(validators=[MinValueValidator(0)])
-    entradaB = models.FloatField(validators=[MinValueValidator(0)])
-    entradaC = models.FloatField(validators=[MinValueValidator(0)])
-    entradaD = models.FloatField(validators=[MinValueValidator(0)])
-    entradaE = models.FloatField(validators=[MinValueValidator(0)])
 
-    desvioA = models.FloatField(validators=[MinValueValidator(0)])
-    desvioB = models.FloatField(validators=[MinValueValidator(0)])
-    desvioC = models.FloatField(validators=[MinValueValidator(0)])
-    desvioD = models.FloatField(validators=[MinValueValidator(0)])
-    desvioE = models.FloatField(validators=[MinValueValidator(0)])
-'''
-class Evento_Customizavel(Evento):
-    customizavel = models.BooleanField(default=True)
 
-class Evento_Default(Evento):
-    default = models.BooleanField(default=True)
-'''
+
+
+class Evento_ModificaEntrada(models.Model):
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    area_classe_social = models.ForeignKey(Area_ClasseSocial, on_delete=models.CASCADE)
+    modificadorEntrada = models.FloatField(validators=[MinValueValidator(0)])
+    modificadorDesvio = models.FloatField(validators=[MinValueValidator(0)])
+

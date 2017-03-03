@@ -1,0 +1,96 @@
+{% extends 'home/base_configuracoes.html' %}
+
+{% block title%}Evento{% endblock title%}
+{% block home %}{% endblock %}
+{% block home_span %}{% endblock %}
+{% block medico %}{% endblock %}
+{% block medico_span %}{% endblock %}
+{% block modulo %}{% endblock %}
+{% block modulo_span %}{% endblock %}
+{% block emprestimo %}{% endblock %}
+{% block emprestimo_span %}{% endblock %}
+{% block area %}{% endblock %}
+{% block area_span %}{% endblock %}
+{% block evento %}class="active"{% endblock %}
+{% block evento_span %}<span class="sr-only">(current)</span>{% endblock %}
+{% block body %}
+    <center><h1>Cadastrar Evento</h1></center><br>
+
+
+<form action="." method="POST">{% csrf_token %}
+
+    <div style="width: 30%; position: absolute; top:20%; bottom: 0; left: 0; right: 0; margin: 0 auto;">
+        <table class="table table-striped" align="center">
+            <thead>
+                <tr>
+                    <td align="right"><b>Atributos</b></td>
+
+                    <td align="left"><b>Valores</b></td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td align="right">Id:</td>
+                    <td align="left">{{id}}</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+                    <td align="right">Nome:</td>
+                    <td align="left">{{form.nome}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+
+
+
+        <table class="table table-striped">
+            <tbody>
+               <th>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table class="table table-striped">
+                                <thead>
+                                    <th>Area</th>
+                                    <th>Classe Social</th>
+                                    <th></th>
+                                    <th>Entrada</th>
+                                    <th>±</th>
+                                    <th> Desvio </th>
+                                </thead>
+
+                                <tbody>
+                                    {% for item, nomesAreas, nomesClasses in list%}
+                                        <td>{{nomesAreas}}</td>
+                                        <td>{{nomesClasses}}</td>
+                                        <td></td>
+                                        <td>{{item.modificadorEntrada}}</td> <td> ± </td> <td> {{item.modificadorDesvio}}</td>
+                                        <tr></tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+               </th>
+            </tbody>
+        </table>
+
+        <table class="table table-striped">
+
+            <td align="right"><a  style="text-decoration:none;" href="{% url 'evento:evento_index' %}"><button type="button" class="btn btn-warning btn-block" >Voltar</button></a></td>
+            <td align="left"><button type="submit" class="btn btn-success btn-block" >Cadastrar</button></td>
+
+        </table>
+
+
+    </div>
+    {{form.nome.errors}}
+
+
+    {{ form_evento_modificaentrada.errors }}
+    {{ form.errors }} {# Melhorar a exibição de erros para o caso de Código e Area já existirem #}
+</form>
+
+{% endblock body %}

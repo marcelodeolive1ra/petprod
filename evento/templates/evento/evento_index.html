@@ -6,5 +6,67 @@
 {% block body %}
     <div class="container">
     <center><h1>Eventos</h1></center>
+        <div align="right" style="margin-right: 11%">
+                <a href="{% url 'evento:evento_new' %}"><button type="submit" class="btn btn-primary">Cadastrar Novo</button></a>
+        </div>
+
+    <table class="table table-striped">
+        {% with 0 as a %}
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+
+            {% for evento in eventos%}
+                <tr>
+                    <th data-toggle="collapse" data-target="#collapseinativo{{forloop.counter }}">{{evento.id}}</th>
+                    <th data-toggle="collapse" data-target="#collapseinativo{{forloop.counter }}">{{evento.nome}}</th>
+                </tr>
+
+                    <td colspan="2">
+                        <div id="collapseinativo{{forloop.counter}}" class="collapse jumbotron">
+                            <table class="table table-striped">
+                                <tbody>
+                                    <tr>
+                                        <th>
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <table class="table table-striped">
+                                                        <thead>
+                                                            <th>Classe Social</th>
+                                                            <th>Entrada ± Desvio </th>
+                                                        </thead>
+
+                                                        <tbody>
+                                                            {% for mod in modificacoes%}
+                                                                {% if mod.evento == evento.id%}
+                                                                    <td>{{mod.area_classe_social.nome }}</td>
+                                                                    <td>{{mod.modificadorEntrada}} ± {{mod.modificadorDesvio}}</td>
+                                                                {% endif %}
+                                                                <tr></tr>
+                                                            {% endfor %}
+                                                            <td align="right"></td>
+                                                            <td><a href="{% url 'evento:evento_delete' evento.id %}"><button type="button" class="btn btn-danger">Deletar</button></a></td>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                {% endfor %}
+
+
+
+    {% endwith %}
+</table>
+
+
     </div>
 {% endblock body %}
