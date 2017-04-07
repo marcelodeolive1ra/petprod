@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-
+from Time.models import Time
 # Create your models here.
 class Medico(models.Model):
     classificacao = ((1,'1'),(2,'2'),(3,'3'))
@@ -10,3 +10,4 @@ class Medico(models.Model):
     expertise = models.IntegerField(default=1, choices=classificacao)
     atendimento = models.IntegerField(default=1, choices=classificacao)
     pontualidade = models.IntegerField(default=1, choices=classificacao)
+

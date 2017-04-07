@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'evento',
     'cenario',
     'rodada',
+    'Time'
 ]
 
 MIDDLEWARE_CLASSES = [

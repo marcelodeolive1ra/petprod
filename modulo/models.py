@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from area.models import Area
-
+from Time.models import Time
 class Modulo(models.Model):
     class Meta:
         unique_together = (('codigo', 'area'),)
@@ -17,3 +17,5 @@ class Modulo(models.Model):
     conforto = models.IntegerField(default=1, choices=classificacao)
     capacidade = models.IntegerField(validators=[MinValueValidator(1)])
     preco_do_tratamento = models.FloatField(validators=[MinValueValidator(0.0)])
+
+
